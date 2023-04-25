@@ -22,7 +22,7 @@
 
             </MenuItem>
         </Menu>
-        <ListView DockPanel.Dock="Left" Width="140" ItemsSource="{Binding Notebooks}">
+        <ListView DockPanel.Dock="Left" Width="140" SelectedValue="{Binding SelectedNotebook, Mode=TwoWay}" ItemsSource="{Binding Notebooks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
