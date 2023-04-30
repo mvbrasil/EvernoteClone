@@ -30,6 +30,12 @@ namespace EvernoteClone.View
         public NotesWindow()
         {
             InitializeComponent();
+
+            var fontFamilies = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
+            fontFamilyCombox.ItemsSource = fontFamilies;
+
+            List<double> fontSizes = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 28, 48, 72 };
+            fontSizeComboBox.ItemsSource = fontSizes;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -88,8 +94,60 @@ namespace EvernoteClone.View
         private void contentRichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             var selectedweight = contentRichTextBox.Selection.GetPropertyValue(FontWeightProperty);
-
             boldButton.IsChecked = (selectedweight != DependencyProperty.UnsetValue) && (selectedweight.Equals(FontWeights.Bold));
+
+            var selectedStyle = contentRichTextBox.Selection.GetPropertyValue(Inline.FontStyleProperty);
+            italicButton.IsChecked = (selectedStyle != DependencyProperty.UnsetValue) && (selectedStyle.Equals(FontStyles.Italic));
+
+            var selectedDecoration = contentRichTextBox.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
+            underlineButton.IsChecked = (selectedDecoration != DependencyProperty.UnsetValue) && selectedDecoration.Equals(TextDecorations.Underline);
+
+            fontFamilyCombox.SelectedItem = contentRichTextBox.Selection.GetPropertyValue(Inline.FontFamilyProperty);
+            fontSizeComboBox.Text = (contentRichTextBox.Selection.GetPropertyValue(Inline.FontSizeProperty)).ToString();
+        }
+
+        private void italicButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool isButtonEnabled = (sender as ToggleButton).IsChecked ?? false;
+
+            if (isButtonEnabled)
+            {
+                contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontStyleProperty, FontStyles.Italic);
+            }
+            else
+            {
+                contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontStyleProperty, FontStyles.Normal);
+            }
+
+        }
+
+        private void underlineButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool isButtonEnabled = (sender as ToggleButton).IsChecked ?? false;
+
+            if (isButtonEnabled)
+            {
+                contentRichTextBox.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+            }
+            else
+            {
+                TextDecorationCollection textDecorations;
+                (contentRichTextBox.Selection.GetPropertyValue(Inline.TextDecorationsProperty) as TextDecorationCollection).TryRemove(TextDecorations.Underline, out textDecorations);
+                contentRichTextBox.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, textDecorations);
+            }
+        }
+
+        private void fontFamilyCombox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (fontFamilyCombox.SelectedItem != null)
+            {
+                contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontFamilyProperty, fontFamilyCombox.SelectedItem);
+            }
+        }
+
+        private void fontSizeComboBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontSizeProperty, fontSizeComboBox.Text);
         }
     }
 }
