@@ -55,7 +55,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <ListView DockPanel.Dock="Left" Width="140" ItemsSource="{Binding Notes}">
+        <ListView DockPanel.Dock="Left" Width="140" SelectedValue="{Binding SelectedNote, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding Notes}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <uc:DisplayNote Note="{Binding}"/>
@@ -82,6 +83,7 @@
                 <ComboBox x:Name="fontFamilyCombox" Width="100" SelectionChanged="fontFamilyCombox_SelectionChanged"/>
                 <ComboBox x:Name="fontSizeComboBox" Width="50" IsEditable="True" TextBoxBase.TextChanged="fontSizeComboBox_TextChanged"/>
 
+                <Button Content="Save" Click="Button_Click"/>
             </ToolBar>
         </ToolBarTray>
         <Grid>
