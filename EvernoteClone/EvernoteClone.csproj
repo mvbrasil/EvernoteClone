@@ -40,6 +40,9 @@
     <Reference Include="Microsoft.CognitiveServices.Speech.csharp, Version=1.28.0.28, Culture=neutral, PublicKeyToken=d2e6dcccb609e663, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CognitiveServices.Speech.1.28.0\lib\net462\Microsoft.CognitiveServices.Speech.csharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite-net, Version=1.8.116.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\sqlite-net-pcl.1.8.116\lib\netstandard2.0\SQLite-net.dll</HintPath>
     </Reference>
@@ -89,6 +92,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Commands\EditCommand.cs" />
+    <Compile Include="ViewModel\Commands\EndEditingCommand.cs" />
     <Compile Include="ViewModel\Commands\LoginCommand.cs" />
     <Compile Include="ViewModel\Commands\NewNotebookCommand.cs" />
     <Compile Include="ViewModel\Commands\NewNoteCommand.cs" />
