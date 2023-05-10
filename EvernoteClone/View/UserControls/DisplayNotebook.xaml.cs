@@ -1,9 +1,7 @@
 ﻿using EvernoteClone.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,8 +19,6 @@ namespace EvernoteClone.View.UserControls
     /// </summary>
     public partial class DisplayNotebook : UserControl
     {
-
-
         public Notebook Notebook
         {
             get { return (Notebook)GetValue(NotebookProperty); }
@@ -37,7 +33,7 @@ namespace EvernoteClone.View.UserControls
         {
             DisplayNotebook notebookUserControl = d as DisplayNotebook;
 
-            if (notebookUserControl != null)
+            if(notebookUserControl != null)
             {
                 notebookUserControl.DataContext = notebookUserControl.Notebook;
             }

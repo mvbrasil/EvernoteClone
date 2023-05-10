@@ -1,10 +1,7 @@
 ﻿using EvernoteClone.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace EvernoteClone.ViewModel.Commands
@@ -15,9 +12,9 @@ namespace EvernoteClone.ViewModel.Commands
 
         public NotesVM ViewModel { get; set; }
 
-        public EndEditingCommand(NotesVM vM)
+        public EndEditingCommand(NotesVM vm)
         {
-            ViewModel = vM;
+            ViewModel = vm;
         }
 
         public bool CanExecute(object parameter)
@@ -29,9 +26,7 @@ namespace EvernoteClone.ViewModel.Commands
         {
             Notebook notebook = parameter as Notebook;
             if (notebook != null)
-            {
                 ViewModel.StopEditing(notebook);
-            }
         }
     }
 }

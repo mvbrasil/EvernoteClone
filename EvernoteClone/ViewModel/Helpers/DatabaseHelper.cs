@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EvernoteClone.ViewModel.Helpers
 {
@@ -16,14 +14,12 @@ namespace EvernoteClone.ViewModel.Helpers
         {
             bool result = false;
 
-            using(SQLiteConnection conn = new SQLiteConnection(dbFile))
+            using (SQLiteConnection conn = new SQLiteConnection(dbFile))
             {
                 conn.CreateTable<T>();
                 int rows = conn.Insert(item);
                 if (rows > 0)
-                {
                     result = true;
-                }
             }
 
             return result;
@@ -38,9 +34,7 @@ namespace EvernoteClone.ViewModel.Helpers
                 conn.CreateTable<T>();
                 int rows = conn.Update(item);
                 if (rows > 0)
-                {
                     result = true;
-                }
             }
 
             return result;
@@ -55,9 +49,7 @@ namespace EvernoteClone.ViewModel.Helpers
                 conn.CreateTable<T>();
                 int rows = conn.Delete(item);
                 if (rows > 0)
-                {
                     result = true;
-                }
             }
 
             return result;
@@ -71,11 +63,9 @@ namespace EvernoteClone.ViewModel.Helpers
             {
                 conn.CreateTable<T>();
                 items = conn.Table<T>().ToList();
-
             }
 
             return items;
         }
-
     }
 }

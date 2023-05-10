@@ -1,9 +1,7 @@
 ﻿using EvernoteClone.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,11 +15,10 @@ using System.Windows.Shapes;
 namespace EvernoteClone.View.UserControls
 {
     /// <summary>
-    /// Interaction logic for DisplayNotes.xaml
+    /// Interaction logic for DisplayNote.xaml
     /// </summary>
     public partial class DisplayNote : UserControl
     {
-
         public Note Note
         {
             get { return (Note)GetValue(NoteProperty); }
@@ -41,7 +38,6 @@ namespace EvernoteClone.View.UserControls
                 noteUserControl.DataContext = noteUserControl.Note;
             }
         }
-
 
         public DisplayNote()
         {

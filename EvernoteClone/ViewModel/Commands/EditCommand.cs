@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Input;
 
 namespace EvernoteClone.ViewModel.Commands
@@ -11,11 +10,11 @@ namespace EvernoteClone.ViewModel.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        public NotesVM viewModel { get; set; }
+        public NotesVM ViewModel { get; set; }
 
-        public EditCommand(NotesVM vM)
+        public EditCommand(NotesVM vm)
         {
-            viewModel = vM;
+            ViewModel = vm;
         }
 
         public bool CanExecute(object parameter)
@@ -25,7 +24,7 @@ namespace EvernoteClone.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            viewModel.StartEditing();
+            ViewModel.StartEditing();
         }
     }
 }

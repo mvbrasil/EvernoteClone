@@ -8,21 +8,25 @@
         xmlns:local="clr-namespace:EvernoteClone.View"
         mc:Ignorable="d"
         Title="LoginWindow" Height="300" Width="300">
-
     <Window.Resources>
         <ResourceDictionary>
             <vm:LoginVM x:Key="vm"/>
         </ResourceDictionary>
     </Window.Resources>
-    
     <Grid DataContext="{StaticResource vm}">
-        <StackPanel Visibility="{Binding LoginVis}" Margin="10">
+        <StackPanel Visibility="{Binding LoginVis}"
+                    Margin="10">
             <TextBlock Text="Username:"/>
             <TextBox Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Password:"/>
             <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Command="{Binding LoginCommand}" Content="Login" CommandParameter="{Binding User}" Margin="0,5"/>
-            <TextBlock Text="Register" Foreground="DodgerBlue" TextDecorations="Underline">
+            <Button Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding User}"
+                    Margin="0,5"
+                    Content="Login"/>
+            <TextBlock Text="Register"
+                       Foreground="DodgerBlue"
+                       TextDecorations="Underline">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
                         <i:InvokeCommandAction Command="{Binding ShowRegisterCommand}"/>
@@ -30,7 +34,8 @@
                 </i:Interaction.Triggers>
             </TextBlock>
         </StackPanel>
-        <StackPanel Visibility="{Binding RegisterVis}" Margin="10">
+        <StackPanel Visibility="{Binding RegisterVis}"
+                    Margin="10,0">
             <TextBlock Text="Username:"/>
             <TextBox Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Name:"/>
@@ -39,10 +44,15 @@
             <TextBox Text="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Password:"/>
             <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock Text="Confirm Password:"/>
+            <TextBlock Text="Confirm password:"/>
             <TextBox Text="{Binding ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Command="{Binding RegisterCommand}" Content="Register" CommandParameter="{Binding User}" Margin="0,5"/>
-            <TextBlock Text="Login" Foreground="DodgerBlue" TextDecorations="Underline">
+            <Button Command="{Binding RegisterCommand}"
+                    CommandParameter="{Binding User}"
+                    Margin="0,5"
+                    Content="Register"/>
+            <TextBlock Text="Login"
+                       Foreground="DodgerBlue"
+                       TextDecorations="Underline">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
                         <i:InvokeCommandAction Command="{Binding ShowRegisterCommand}"/>
