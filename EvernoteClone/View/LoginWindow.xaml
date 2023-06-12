@@ -11,19 +11,48 @@
     <Window.Resources>
         <ResourceDictionary>
             <vm:LoginVM x:Key="vm"/>
+            <Storyboard x:Key="MoveUp">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                    <EasingDoubleKeyFrame KeyTime="00:00:00" Value="25"/>
+                    <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="5"/>
+                    <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(UIElement.Opacity)">
+                    <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                    <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0.8"/>
+                    <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                    <EasingDoubleKeyFrame KeyTime="00:00:00" Value="155"/>
+                    <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="260"/>
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="button" Storyboard.TargetProperty="(FrameworkElement.Height)">
+                    <EasingDoubleKeyFrame KeyTime="00:00:00" Value="12"/>
+                    <EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="20"/>
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
         </ResourceDictionary>
     </Window.Resources>
     <Grid DataContext="{StaticResource vm}">
         <StackPanel Visibility="{Binding LoginVis}"
-                    Margin="10">
+                    Margin="20,80,20,80">
             <TextBlock Text="Email:"/>
             <TextBox Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Password:"/>
             <TextBox Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Command="{Binding LoginCommand}"
+            <Button x:Name="button" Command="{Binding LoginCommand}"
                     CommandParameter="{Binding User}"
                     Margin="0,5"
-                    Content="Login"/>
+                    Content="Login" RenderTransformOrigin="0.5,0.5" Height="20" Width="260">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
             <TextBlock Text="Register"
                        Foreground="DodgerBlue"
                        TextDecorations="Underline">
