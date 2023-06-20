@@ -8,7 +8,9 @@
         xmlns:uc="clr-namespace:EvernoteClone.View.UserControls"
         xmlns:vm="clr-namespace:EvernoteClone.ViewModel"
         mc:Ignorable="d"
-        Title="NotesWindow" Height="450" Width="800">
+        Title="Notes" 
+        Icon="Notes.ico"
+        Height="450" Width="800">
     <Window.Resources>
         <ResourceDictionary>
             <vm:NotesVM x:Key="vm"/>
@@ -98,14 +100,18 @@
                           Width="50"
                           IsEditable="True"
                           TextBoxBase.TextChanged="fontSizeComboBox_TextChanged"/>
-                <Button Content="Save"
+                <Button Content="Save" x:Name="saveFileButton"
                         Click="Button_Click"/>
             </ToolBar>
         </ToolBarTray>
         <Grid>
-            <RichTextBox x:Name="contentRichTextBox"
+            <StackPanel>
+                <TextBox Margin="10" Text="{Binding Path=SelectedNote.Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <RichTextBox x:Name="contentRichTextBox"
                          TextChanged="contentRichTextBox_TextChanged"
                          SelectionChanged="contentRichTextBox_SelectionChanged"/>
+            </StackPanel>
         </Grid>
     </DockPanel>
 </Window>
